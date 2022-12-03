@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 from match import Country
-from knockoff import semi_finals, qtr_finals, r16_outcome
+from knockoff import r16_outcome
 import collections
 import matplotlib.pyplot as plt
 
@@ -29,7 +29,6 @@ def load_data(my_team: str):
     skills = dict()
     total_goals = dict()
     num_matches = dict()
-    # Process group matches as well
     r16_matches = matches[matches["Stage"] == "Round of 16"]
     qf_matches = matches[matches["Stage"] == "Quarter-finals"]
     sf_matches = matches[matches["Stage"] == "Semi-finals"]
@@ -113,7 +112,6 @@ def load_data(my_team: str):
     print("Probability that", my_team, "claims 3rd place:", probs[2] * 100, "%")
     print("Probability that", my_team, "claims runner-up:", probs[3] * 100, "%")
     print("PROBABILITY THAT", my_team, "WINS THE WORLD CUP:", probs[4] * 100, "%")
-    
     print("====================================================================")
 
 

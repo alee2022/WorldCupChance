@@ -1,10 +1,7 @@
-from match import Country, win_prob, tie_prob, kowin_prob
+from match import Country, kowin_prob
 from typing import List, Dict
-# TODO: implement function that takes in 16 teams in order, for each team, returns prob that they advance to 8, 4, 2, and win
+
 def semi_finals(table: List[List[str]], countries: Dict[str, Country], my_team: str, beta: float):
-    # TODO: implement for list input
-    visited = set()
-    #sanity check
     p_win = 0
     p_4th = 0
     p_3rd = 0
@@ -34,7 +31,6 @@ def semi_finals(table: List[List[str]], countries: Dict[str, Country], my_team: 
         p_3rd += (1 - p_win) * p_Awin * kowin_prob(countries[my_team], countries[teamB], beta)
         p_4th += (1 - p_win) * p_Bwin * kowin_prob(countries[teamA], countries[my_team], beta)
         p_4th += (1 - p_win) * p_Awin * kowin_prob(countries[teamB], countries[my_team], beta)
-    # Returns [P(4th, 3rd, 2nd place, 1st place)
     return [p_4th, p_3rd, p_2nd, p_1st]
 
 def qtr_finals(table: List[List[List[str]]], countries: Dict[str, Country], my_team: str, beta: float):
