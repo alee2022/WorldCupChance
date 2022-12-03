@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-from match import Country, win_prob, kowin_prob
+from match import Country
 from knockoff import semi_finals, qtr_finals, r16_outcome
 import collections
 import matplotlib.pyplot as plt
@@ -26,12 +26,6 @@ def load_data(my_team: str):
     matches = pd.read_csv("WorldCupMatches.csv")
     matches = matches[matches["Year"] > 1996]
     goals_mean = matches.groupby("Home Team Initials")["Home Team Goals"].mean()
-    '''
-    1. Go through each stage and update skill score
-    2. Graph skill score vs goals scored against ->  include in paper
-    3. Determine adjustment factor based on skill levels
-    4. 
-    '''
     skills = dict()
     total_goals = dict()
     num_matches = dict()
@@ -90,8 +84,8 @@ def load_data(my_team: str):
         if beta != None:
             betas.append(estimate_coef(x, y))
     beta_skill = np.mean(betas)
-    print("mean of beta:", np.mean(betas))
-    print("STDV of beta:", np.std(betas))
+    # print("mean of beta:", np.mean(betas))
+    # print("STDV of beta:", np.std(betas))
     
     # find lambda for each team -> lambda = parameter against team with skill 0
     lambd = dict()
